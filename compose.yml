@@ -81,7 +81,7 @@ services:
 
   grafana:
     restart: always
-    image: grafana/grafana-enterprise
+    image: grafana/grafana-enterprise:11.1.3
     container_name: netprobe-grafana
     volumes:
       - ./config/grafana/datasources/automatic.yml:/etc/grafana/provisioning/datasources/automatic.yml
