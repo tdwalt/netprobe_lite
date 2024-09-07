@@ -89,9 +89,6 @@ services:
       - ./config/grafana/dashboards/netprobe.json:/var/lib/grafana/dashboards/netprobe.json
       - grafana_data:/var/lib/grafana
     network_mode: service:netprobe-ts
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
 
   netprobe-ts:
     image: netprobe-ts:latest
