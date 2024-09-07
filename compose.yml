@@ -100,7 +100,7 @@ services:
     environment:
       - TS_AUTHKEY=$TAILSCALE_AUTH
       - "TS_EXTRA_ARGS=--advertise-tags=tag:server --reset"
-      - TS_SERVE_CONFIG=/config/stirling.json
+      - TS_SERVE_CONFIG=/config/netprobe.json
       - TS_STATE_DIR=/var/lib/tailscale
     networks:
       - netprobe-net
