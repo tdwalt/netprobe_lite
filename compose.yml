@@ -109,6 +109,10 @@ services:
       - flame.url=https://netprobe.rya-mohs.ts.net
       - flame.icon=web-box
     restart: unless-stopped
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4      
+
       
 volumes:
   prometheus_data:
