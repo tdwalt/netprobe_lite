@@ -106,14 +106,13 @@ services:
     labels:
       - flame.type=application
       - flame.name=Netprobe Internet Tracking
-      - flame.url=https://netprobe.rya-mohs.ts.net
+      - flame.url=https://netprobe.rya-mohs.ts.net/d/app/netprobe?orgId=1
       - flame.icon=web-box
     restart: unless-stopped
     dns:
       - 8.8.8.8
       - 8.8.4.4      
 
-      
 volumes:
   prometheus_data:
   grafana_data:
