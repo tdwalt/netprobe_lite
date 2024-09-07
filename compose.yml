@@ -88,15 +88,33 @@ services:
       - ./config/grafana/dashboards/main.yml:/etc/grafana/provisioning/dashboards/main.yml
       - ./config/grafana/dashboards/netprobe.json:/var/lib/grafana/dashboards/netprobe.json
       - grafana_data:/var/lib/grafana
-    ports:
-      - '3001:3000'
-    networks:
-      - netprobe-net
+    network_mode: service:netprobe-ts
     dns:
       - 8.8.8.8
-      - 8.8.4.4      
+      - 8.8.4.4
+
+  netprobe-ts:
+    image: netprobe-ts:latest
+    container_name: netprobe-ts
+    hostname: netprobe
+    environment:
+      - TS_AUTHKEY=$TAILSCALE_AUTH
+      - "TS_EXTRA_ARGS=--advertise-tags=tag:server --reset"
+      - TS_SERVE_CONFIG=/config/stirling.json
+      - TS_STATE_DIR=/var/lib/tailscale
+    networks:
+      - netprobe-net
+    volumes:
+      - netprobe-ts:/var/lib/tailscale
+    labels:
+      - flame.type=application
+      - flame.name=Netprobe Internet Tracking
+      - flame.url=https://netprobe.rya-mohs.ts.net
+      - flame.icon=web-box
+    restart: unless-stopped
       
 volumes:
   prometheus_data:
   grafana_data:
+  netprobe-ts:
   
