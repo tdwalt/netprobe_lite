@@ -91,13 +91,13 @@ services:
     network_mode: service:netprobe-ts
 
   netprobe-ts:
-    image: netprobe-ts:latest
+    image: tailscale/tailscale
     container_name: netprobe-ts
     hostname: netprobe
     environment:
       - TS_AUTHKEY=$TAILSCALE_AUTH
       - "TS_EXTRA_ARGS=--advertise-tags=tag:server --reset"
-      - TS_SERVE_CONFIG=/config/netprobe.json
+      - TS_SERVE_CONFIG=/var/lib/tailscale/config/netprobe.json
       - TS_STATE_DIR=/var/lib/tailscale
     networks:
       - netprobe-net
